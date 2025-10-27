@@ -1,0 +1,63 @@
+ {{ define "header" }} {{ partials.Include "page-header.html" . }}
+{{ end }} {{ define "main" }}
+<article class="flex-l mw8 center ph3">
+  <header class="mt4 w-100">
+    <h1 class="f1 athelas mt3 mb1">{{ .Title }}</h1>
+    {{ if .Params.subtitle }}
+    <p class="f4 mt2 mb3" style="color: #666">{{ .Params.subtitle }}</p>
+    {{ end }}
+  </header>
+
+  <div class="nested-copy-line-height lh-copy f4 nested-links mid-gray">
+ {{ if .Params.featured_image }}
+    <div class="mb4">
+      <img
+        src="{{ .Params.featured_image }}"
+        alt="{{ .Title }}"
+        class="db w-100"
+        style="max-height: 400px; object-fit: cover"
+      />
+    </div>
+    {{ end }}
+    <div class="mb4">
+      <p>{{ .Params.intro_text }}</p>
+
+      <h2>{{ .Params.mission_title }}</h2>
+      <p>{{ .Params.mission_text }}</p>
+
+      <h2>{{ .Params.services_title }}</h2>
+      <p>{{ .Params.services_text }}</p>
+    </div>
+
+ {{ if .Params.team_enabled }}
+    <section class="mb4">
+      <h2 class="f2 mt4 mb3">Наша команда</h2>
+      <div class="flex flex-wrap">
+        {{ range .Params.team_members }}
+        <div class="w-100 w-50-ns w-33-l pa2">
+          <div class="bg-white ba b--black-10 br3 pa3">
+            <h3 class="f4 mt0 mb1">{{ .name }}</h3>
+            <p class="f6 gray mv1">{{ .position }}</p>
+            {{ if .bio }}
+            <p class="f6 lh-copy">{{ .bio }}</p>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </section>
+    {{ end }} {{ if .Params.values_enabled }}
+    <section class="mb4">
+      <h2 class="f2 mt4 mb3">Наши ценности</h2>
+      <ul class="list pl0">
+        {{ range .Params.company_values }}
+        <li class="f5 lh-copy mb2 pl3" style="border-left: 3px solid #36c">
+          {{ . }}
+        </li>
+        {{ end }}
+      </ul>
+    </section>
+    {{ end }}
+  </div>
+</article>
+{{ end }}

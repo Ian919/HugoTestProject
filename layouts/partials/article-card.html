@@ -1,0 +1,57 @@
+{{/* Component: Article Card
+   Purpose: Displays article cards with image, title and excerpt
+   Parameters:
+     - .Title (page title)
+     - .Params.featured_image or .Params.images[0]
+     - .Summary
+     - .RelPermalink
+     - .Date
+   Usage: {{ partial "article-card.html" . }}
+*/}}
+{{ $featured_image := .Params.featured_image | default (index .Params.images 0) | default false }}
+<article class="article-card ba b--black-10 br3 bg-white overflow-hidden hover-shadow" style="transition: box-shadow 0.3s;">
+  {{ if $featured_image }}
+  <div class="article-card-image">
+    <a href="{{ .RelPermalink }}" class="db">
+      <img src="{{ $featured_image }}" alt="{{ .Title }}" class="db w-100 h-100" style="object-fit: cover; height: 200px;">
+    </a>
+  </div>
+  {{ end }}
+  <div class="article-card-content pa3 pa4-ns">
+    <div class="f6 db mb2" style="color: #666;">
+      <time {{ fmt.Printf `datetime="%s"` (.Date.Format "2006-01-02") | safe.HTMLAttr }}>
+        {{ .Date | time.Format "January 2, 2006" }}
+      </time>
+    </div>
+    <h2 class="f3 fw1 athelas mt0 mb2">
+      <a href="{{ .RelPermalink }}" class="link black dim">
+        {{ .Title }}
+      </a>
+    </h2>
+    {{ if .Summary }}
+    <p class="f6 f5-l lh-copy nested-links" style="color: #555;">
+      {{ .Summary | truncate 150 }}
+    </p>
+    {{ end }}
+    <a href="{{ .RelPermalink }}" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">
+      Читать далее →
+    </a>
+  </div>
+</article>
+
+<style>
+@media screen and (min-width: 60em) {
+  .article-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .article-card-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+}
+</style>
+

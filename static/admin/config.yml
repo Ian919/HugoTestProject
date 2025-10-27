@@ -1,0 +1,130 @@
+backend:
+  name: git-gateway
+  branch: master
+
+media_folder: static/images
+public_folder: /images
+
+collections:
+  - name: "posts"
+    label: "Статьи"
+    folder: "content/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Заголовок", name: "title", widget: "string" }
+      - {
+          label: "Дата публикации",
+          name: "date",
+          widget: "datetime",
+          format: "YYYY-MM-DD",
+        }
+      - {
+          label: "Изображение",
+          name: "featured_image",
+          widget: "image",
+          required: false,
+        }
+      - { label: "Черновик", name: "draft", widget: "boolean", default: false }
+      - { label: "Содержание", name: "body", widget: "markdown" }
+
+  - name: "reviews"
+    label: "Отзывы"
+    folder: "content/reviews"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Заголовок", name: "title", widget: "string" }
+      - { label: "Автор", name: "author", widget: "string" }
+      - {
+          label: "Должность",
+          name: "position",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Компания",
+          name: "company",
+          widget: "string",
+          required: false,
+        }
+      - { label: "Аватар", name: "avatar", widget: "image", required: false }
+      - {
+          label: "Дата отзыва",
+          name: "date",
+          widget: "datetime",
+          format: "YYYY-MM-DD",
+        }
+      - { label: "Текст отзыва", name: "body", widget: "markdown" }
+
+  - name: "about"
+    label: "О компании"
+    files:
+      - label: "Страница О компании"
+        name: "_index"
+        file: "content/about/_index.md"
+        fields:
+          - { label: "Заголовок", name: "title", widget: "string" }
+          - {
+              label: "Подзаголовок",
+              name: "subtitle",
+              widget: "string",
+              required: false,
+            }
+          - {
+              label: "Изображение",
+              name: "featured_image",
+              widget: "image",
+              required: false,
+            }
+
+          - { label: "Вступительный текст", name: "intro_text", widget: "text" }
+
+          - {
+              label: "Заголовок миссии",
+              name: "mission_title",
+              widget: "string",
+            }
+          - { label: "Текст миссии", name: "mission_text", widget: "text" }
+
+          - {
+              label: "Заголовок услуг",
+              name: "services_title",
+              widget: "string",
+            }
+          - { label: "Текст услуг", name: "services_text", widget: "text" }
+
+          - {
+              label: "Показать команду",
+              name: "team_enabled",
+              widget: "boolean",
+              default: true,
+            }
+          - label: "Члены команды"
+            name: "team_members"
+            widget: "list"
+            fields:
+              - label: "Имя"
+                name: "name"
+                widget: "string"
+              - label: "Должность"
+                name: "position"
+                widget: "string"
+              - label: "Биография"
+                name: "bio"
+                widget: "text"
+                required: false
+
+          - {
+              label: "Показать ценности",
+              name: "values_enabled",
+              widget: "boolean",
+              default: true,
+            }
+          - label: "Ценности компании"
+            name: "company_values"
+            widget: "list"
+            field:
+              label: "Ценность"
+              name: "value"
+              widget: "string"

@@ -1,0 +1,19 @@
+{{ define "header" }}
+  {{ partials.Include "page-header.html" . }}
+{{ end }}
+
+{{ define "main" }}
+<article class="flex-l mw8 center ph3">
+  <header class="mt4 w-100">
+    <div class="f6 db mb2" style="color: #666;">
+      Review
+    </div>
+    <h1 class="f1 athelas mt3 mb1">{{ .Title }}</h1>
+  </header>
+  
+  <div class="nested-copy-line-height lh-copy f4 nested-links mid-gray">
+    {{ partial "review-card.html" . }}
+  </div>
+</article>
+{{ end }}
+

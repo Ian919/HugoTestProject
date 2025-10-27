@@ -1,0 +1,34 @@
+baseURL = 'https://example.org/'
+languageCode = 'ru'
+title = 'Мой новый Hugo сайт'
+theme = 'ananke'
+
+[pagination]
+  pagerSize = 5
+
+[[menu.main]]
+name = "Статьи"
+url = "/posts/"
+weight = 1
+
+[[menu.main]]
+name = "Отзывы"
+url = "/reviews/"
+weight = 2
+
+[[menu.main]]
+name = "О компании"
+url = "/about/"
+weight = 3
+
+[params]
+  show_recent_posts = true
+  recent_posts_number = 3
+  
+  description = "Современный статический сайт, созданный с помощью Hugo"
+  
+[params.social]
+  icon_path = "ananke/socials/%s.svg"
+
+[params.ananke]
+  date_format = "January 2, 2006"

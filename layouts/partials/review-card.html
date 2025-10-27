@@ -1,0 +1,52 @@
+{{/* Component: Review Card
+   Purpose: Displays customer reviews with author, position and text
+   Parameters:
+     - .Params.author (reviewer name)
+     - .Params.position (reviewer position)
+     - .Params.company (reviewer company, optional)
+     - .Params.avatar (avatar image, optional)
+     - .Content (review text)
+   Usage: {{ partial "review-card.html" . }}
+*/}}
+<article class="review-card bg-white ba b--black-10 br3 pa3 pa4-ns">
+  <div class="review-content mb3">
+    {{ if .Content }}
+    <div class="f5 f4-l lh-copy nested-links" style="color: #333;">
+      "{{ .Content }}"
+    </div>
+    {{ end }}
+  </div>
+  <div class="review-author flex items-center">
+    {{ if .Params.avatar }}
+    <div class="review-avatar mr3">
+      <img src="{{ .Params.avatar }}" alt="{{ .Params.author }}" class="br-100" style="width: 50px; height: 50px; object-fit: cover;">
+    </div>
+    {{ else }}
+    <div class="review-avatar mr3 br-100 bg-light-gray flex items-center justify-center" style="width: 50px; height: 50px;">
+      <span class="f3" style="color: #666;">{{ substr .Params.author 0 1 }}</span>
+    </div>
+    {{ end }}
+    <div class="review-info">
+      <div class="f6 fw5 black">{{ .Params.author }}</div>
+      {{ if .Params.position }}
+      <div class="f7 gray">{{ .Params.position }}</div>
+      {{ end }}
+      {{ if .Params.company }}
+      <div class="f7 gray">{{ .Params.company }}</div>
+      {{ end }}
+    </div>
+  </div>
+</article>
+
+<style>
+@media screen and (min-width: 60em) {
+  .review-card {
+    transition: box-shadow 0.3s;
+  }
+  
+  .review-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+}
+</style>
+

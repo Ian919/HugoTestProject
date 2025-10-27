@@ -63,7 +63,7 @@ static/images/      # Изображения
 
 ### Новая статья
 
-Создай файл в `content/posts/`:
+Создать файл в `content/posts/`:
 
 ```yaml
 ---
@@ -77,7 +77,7 @@ draft: false
 
 ### Новый отзыв
 
-Создай файл в `content/reviews/`:
+Создать файл в `content/reviews/`:
 
 ```yaml
 ---
